@@ -125,6 +125,8 @@ class Room(ABC):
                 elif event["type"] == "_leave":
                     if event["user_id"] in self.members:
                         await self.serv.api.post_room_leave(self.id, event["user_id"])
+                        logging.error("HIERZO!")
+                        logging.error(event)
                         self.members.remove(event["user_id"])
                 elif event["type"] == "_rename":
                     old_irc_user_id = self.serv.irc_user_id(self.network.name, event["old_nick"])
